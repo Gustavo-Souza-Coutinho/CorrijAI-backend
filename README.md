@@ -4,6 +4,27 @@ CorrijAI é uma aplicação moderna e eficiente que utiliza inteligência artifi
 
 ---
 
+## Índice
+
+- [Funcionalidades](#funcionalidades)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+  - [Arquivos Principais](#arquivos-principais)
+- [Dependências](#dependencias)
+- [Estrutura do Banco de Dados](#estrutura-do-banco-de-dados)
+- [Endpoints da API](#endpoints-da-api)
+  - [Gerenciamento de Usuários](#gerenciamento-de-usuarios)
+  - [Gerenciamento de Perguntas](#gerenciamento-de-perguntas)
+  - [Gerenciamento de Respostas](#gerenciamento-de-respostas)
+  - [Gerenciamento de Notas](#gerenciamento-de-notas)
+- [Como Funciona](#como-funciona)
+- [Executando a Aplicação](#executando-a-aplicacao)
+- [Considerações de Segurança](#consideracoes-de-seguranca)
+- [Melhorias Futuras](#melhorias-futuras)
+- [Agradecimentos](#agradecimentos)
+- [Contato](#contato)
+
+---
+
 ## Funcionalidades
 
 - **Gerenciamento de Usuários**: Suporte ao cadastro e login de dois tipos de usuários: Professores (`P`) e Alunos (`A`).
@@ -22,13 +43,6 @@ CorrijAI é uma aplicação moderna e eficiente que utiliza inteligência artifi
 CorrijAI-backend/
 ├── .gitattributes
 ├── .idea/
-│   ├── .gitignore
-│   ├── inspectionProfiles/
-│   │   └── profiles_settings.xml
-│   ├── misc.xml
-│   ├── modules.xml
-│   ├── workspace (2).xml
-│   └── xdxd.iml
 ├── app.py
 ├── db.py
 ├── pubspec.yaml
@@ -43,7 +57,6 @@ CorrijAI-backend/
 - **`db.py`**: Responsável pelas operações no banco de dados, incluindo criação de tabelas e operações CRUD.
 - **`templates/index.html`**: Template HTML simples para a página de login.
 - **`pubspec.yaml`**: Especifica as dependências do projeto.
-- **`.idea/`**: Contém arquivos de configuração específicos do IDE (ex.: PyCharm).
 
 ---
 
@@ -51,14 +64,13 @@ CorrijAI-backend/
 
 O projeto utiliza as seguintes dependências:
 
-- **Python 3.12**: Linguagem de programação principal.
-- **Flask**: Framework web leve para aplicações WSGI.
-- **Flask-CORS**: Habilita o compartilhamento de recursos entre origens diferentes (CORS).
-- **SQLite**: Banco de dados leve baseado em arquivos.
-- **google-generativeai**: Para integração com a API Gemini.
-- **http**: Dependência especificada no `pubspec.yaml` para requisições HTTP.
+- **Python 3.12**
+- **Flask**
+- **Flask-CORS**
+- **SQLite**
+- **google-generativeai**
 
-Para instalar as dependências necessárias do Python, execute:
+Para instalar, execute:
 
 ```bash
 pip install flask flask-cors google-generativeai
@@ -70,29 +82,10 @@ pip install flask flask-cors google-generativeai
 
 A aplicação utiliza SQLite com as seguintes tabelas:
 
-1. **`usuario`**: Armazena informações dos usuários.
-   - `id`: Chave primária.
-   - `nome`: Nome do usuário.
-   - `email`: E-mail do usuário (único).
-   - `senha`: Senha do usuário.
-   - `flg_tipo`: Tipo de usuário (`P` para Professor, `A` para Aluno).
-
-2. **`pergunta`**: Armazena as perguntas.
-   - `id`: Chave primária.
-   - `texto`: Texto da pergunta.
-
-3. **`resposta`**: Armazena as respostas dos alunos.
-   - `id`: Chave primária.
-   - `id_pergunta`: Chave estrangeira referenciando `pergunta`.
-   - `id_aluno`: Chave estrangeira referenciando `usuario`.
-   - `resposta`: Texto da resposta.
-
-4. **`nota_aluno`**: Armazena as notas e feedbacks.
-   - `id`: Chave primária.
-   - `id_aluno`: Chave estrangeira referenciando `usuario`.
-   - `nota`: Nota como porcentagem inteira.
-   - `respostas_corrigidas`: Texto com o feedback.
-   - `data_avaliacao`: Data e hora da avaliação.
+1. **`usuario`**
+2. **`pergunta`**
+3. **`resposta`**
+4. **`nota_aluno`**
 
 ---
 
@@ -100,48 +93,34 @@ A aplicação utiliza SQLite com as seguintes tabelas:
 
 ### Gerenciamento de Usuários
 
-- **`POST /cadastrar_usuario`**: Cadastra um novo usuário.
-- **`POST /login`**: Autentica um usuário.
+- **`POST /cadastrar_usuario`**
+- **`POST /login`**
 
 ### Gerenciamento de Perguntas
 
-- **`GET /perguntas`**: Lista todas as perguntas.
-- **`POST /perguntas`**: Adiciona uma nova pergunta.
-- **`PUT /perguntas/<int:id>`**: Atualiza uma pergunta.
-- **`DELETE /perguntas/<int:id>`**: Exclui uma pergunta.
+- **`GET /perguntas`**
+- **`POST /perguntas`**
+- **`PUT /perguntas/<int:id>`**
+- **`DELETE /perguntas/<int:id>`**
 
 ### Gerenciamento de Respostas
 
-- **`GET /alunos_respostas`**: Lista as respostas de um aluno específico.
-- **`POST /corrigir`**: Envia respostas para correção automatizada.
+- **`GET /alunos_respostas`**
+- **`POST /corrigir`**
 
 ### Gerenciamento de Notas
 
-- **`GET /alunos_notas`**: Lista as notas de todos os alunos.
+- **`GET /alunos_notas`**
 
 ---
 
 ## Como Funciona
 
-1. **Cadastro e Login de Usuários**:
-   - Usuários podem se cadastrar como Professor ou Aluno.
-   - As credenciais de login são validadas no banco de dados.
-
-2. **Gerenciamento de Perguntas**:
-   - Professores podem criar, atualizar e excluir perguntas.
-   - As perguntas são armazenadas na tabela `pergunta`.
-
-3. **Envio de Respostas**:
-   - Alunos enviam respostas às perguntas.
-   - As respostas são armazenadas na tabela `resposta`.
-
-4. **Correção Automatizada**:
-   - O endpoint `/corrigir` envia perguntas e respostas para a API Gemini.
-   - A API retorna feedback e uma nota, que são armazenados na tabela `nota_aluno`.
-
-5. **Consulta de Notas**:
-   - Professores podem visualizar as notas de todos os alunos.
-   - Alunos podem visualizar suas próprias notas e feedbacks.
+1. **Cadastro e Login de Usuários**
+2. **Gerenciamento de Perguntas**
+3. **Envio de Respostas**
+4. **Correção Automatizada**
+5. **Consulta de Notas**
 
 ---
 
@@ -166,26 +145,25 @@ pip install flask flask-cors google-generativeai
 python app.py
 ```
 
-4. Acesse a aplicação em `http://localhost:5000`.
+4. Acesse em `http://localhost:5000`.
 
 ---
 
 ## Considerações de Segurança
 
-- **Chave da API**: A chave da API Gemini está hardcoded no arquivo `app.py`. Para produção, considere usar variáveis de ambiente para armazenar informações sensíveis.
-- **Armazenamento de Senhas**: As senhas são armazenadas em texto puro. Implemente hashing (ex.: bcrypt) para maior segurança.
+- **Chave da API** deve ser armazenada em variáveis de ambiente.
+- **Armazenamento de Senhas** deve usar hashing (ex.: bcrypt).
 
 ---
 
 ## Melhorias Futuras
 
-- Implementar autenticação de usuários com JWT.
-- Adicionar integração com frontend para uma experiência completa.
-- Melhorar o tratamento de erros e o logging.
-- Utilizar um sistema de banco de dados mais robusto (ex.: PostgreSQL) para escalabilidade.
+- Implementar autenticação JWT.
+- Adicionar integração com frontend.
+- Melhorar tratamento de erros e logging.
+- Utilizar PostgreSQL para escalabilidade.
 
 ---
-
 
 ## Agradecimentos
 
@@ -197,11 +175,9 @@ python app.py
 
 ## Contato
 
-Se tiver dúvidas ou sugestões, entre em contato:
-
 - **Email**: gustavo.couty@hotmail.com
 - **GitHub**: [Gustavo de Souza Coutinho](https://github.com/Gustavo-Souza-Coutinho)
 
 ---
 
-Obrigado por conferir o **CorrijAI Backend**! 
+Obrigado por conferir o **CorrijAI Backend**!
