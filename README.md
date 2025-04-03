@@ -68,5 +68,5 @@ O servidor será iniciado em `http://127.0.0.1:5000/`.
 Este projeto é de código aberto e está licenciado sob a **MIT License**.
 
 ---
-Desenvolvido por [Seu Nome](https://github.com/seu-usuario). 🚀
+Desenvolvido por [Gustavo de Souza Coutinho]([https://github.com/seu-usuario](https://github.com/Gustavo-Souza-Coutinho)). 🚀
 
