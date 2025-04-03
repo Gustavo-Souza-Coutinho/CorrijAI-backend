@@ -204,4 +204,4 @@ Se tiver dúvidas ou sugestões, entre em contato:
 
 ---
 
-Obrigado por conferir o **CorrijAI Frontend**! 
+Obrigado por conferir o **CorrijAI Backend**! 
