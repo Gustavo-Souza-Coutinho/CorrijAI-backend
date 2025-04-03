@@ -192,3 +192,16 @@ python app.py
 - [Documentação do Flask](https://flask.palletsprojects.com/)
 - [Documentação do SQLite](https://sqlite.org/docs.html)
 - [Google Generative AI](https://developers.generativeai.google/)
+
+---
+
+## Contato
+
+Se tiver dúvidas ou sugestões, entre em contato:
+
+- **Email**: gustavo.couty@hotmail.com
+- **GitHub**: [Gustavo de Souza Coutinho](https://github.com/Gustavo-Souza-Coutinho)
+
+---
+
+Obrigado por conferir o **CorrijAI Frontend**! 
