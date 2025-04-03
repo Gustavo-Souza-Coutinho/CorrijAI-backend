@@ -72,4 +72,5 @@ Desenvolvido por:
 [Gustavo de Souza Coutinho]
 [Andre Luis Piratello Zanini]
 [Maycon Volpe]
+[Guilherme Mendes Carvalho]
 
