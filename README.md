@@ -1,6 +1,6 @@
 # CorrijAI-backend
 
-CorrijAI-backend é uma aplicação backend desenvolvida em Python utilizando Flask e SQLite. Ela foi projetada para gerenciar o cadastro de usuários, lidar com perguntas e respostas, e integrar-se com a API Gemini para correção automatizada e feedback. Este projeto é ideal para plataformas educacionais que necessitam de avaliação automatizada das respostas dos alunos.
+CorrijAI é uma aplicação moderna e eficiente que utiliza inteligência artificial para corrigir textos, fornecer feedback e melhorar a escrita. Este projeto foi desenvolvido com foco em usabilidade, performance e escalabilidade.
 
 ---
 
